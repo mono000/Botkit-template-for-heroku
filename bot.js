@@ -49,23 +49,13 @@ controller.hears(['挨拶', 'こんにちは', 'Bot', 'あなた', '誰', 'だ�
     // bot.reply()で、botに発言をさせます。
     bot.reply(message, 'こんにちは！私は *Botkit製のBot* です！ \n _いろんな事ができますよ！_ :smiley:');
 
-});
+})
 
 
-// ★新規案件フォーマットの呼び出し
+controller.hears(['テストです'], 'direct_message,direct_mention,mention', function (bot, message) {
 
-controller.hears(['fmt受注'], 'direct_message', function (bot, message) {
-    bot.reply(message, '--------------------------------\n
-`受注案件`（ステータス表記：見積もり案件、提案中、●/●更新 など）\n
->>>
-*①クライアント名_yyyy_mm_案件名*\n
-（初登場の場合は簡単に業種や特徴も記載）\n
-*②制作媒体*（カタログ、チラシ など）\n
-*③ボリューム*（版型、ページ数など）\n
-*④請負範囲*（企画、編集、デザイン、ライティングなど）\n
-*⑤スケジュール*（初稿、入稿など）\n
-*⑥その他注意点や懸念点など*\n
-\n--------------------------------');
+    // bot.reply()で、botに発言をさせます。
+    bot.reply(message, ' `受注案件` 私は *①クライアント名_yyyy_mm_案件名* \n _いろんな事ができますよ！_ :smiley:');
 
 });
 
