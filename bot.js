@@ -140,7 +140,7 @@ controller.hears(['^参加チャンネル(.*)'], 'direct_message,direct_mention,
     async.each(res.members, function(member, callback){
       if(!member.deleted){
         if(member.name.match('^'+targetUser+'$')){
-          bot.reply(message, `参加チャンネル一覧です`);
+          bot.reply(message, `${targetUser}さんの参加チャンネル一覧です`);
           uid=member.id
         }
       }
