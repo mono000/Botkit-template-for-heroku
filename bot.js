@@ -54,7 +54,7 @@ controller.hears(['挨拶', 'こんにちは', 'Bot', 'あなた', '誰', 'だ�
 
 // ★新規案件フォーマットの呼び出し
 
-controller.hears(['fmt受注',], 'direct_message', function (bot, message) {
+controller.hears(['fmt受注'], 'direct_message', function (bot, message) {
     bot.reply(message, '--------------------------------\n
 `受注案件`（ステータス表記：見積もり案件、提案中、●/●更新 など）\n
 >>>
