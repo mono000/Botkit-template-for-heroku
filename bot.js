@@ -124,6 +124,62 @@ controller.hears(['ハイタッチ'], 'direct_message,direct_mention,mention,amb
 });
 
 
+//=========================================================
+// メンバーが参加しているチャンネルを調べる
+//=========================================================
+
+// 「参加チャンネル[名前]」すると検索します。
+
+var async = require('async');
+
+controller.hears(['^参加チャンネル(.*)'], 'direct_message,direct_mention,mention', function(bot, message) {
+  var targetUser = message.match[1];
+  var uid = ''
+
+  bot.api.users.list({}, function(err, res){
+    async.each(res.members, function(member, callback){
+      if(!member.deleted){
+        if(member.name.match('^'+targetUser+'$')){
+          bot.reply(message, `${targetUser}さんのユーザIDは${member.id}です。`);
+          uid=member.id
+        }
+      }
+    });
+
+    if(uid === ''){
+      bot.reply(message, 'ユーザ検索にヒットしませんでした。');
+    } else {
+      userInChannel(uid, bot, message);
+    }
+  });
+
+});
+
+function userInChannel(uid, bot, message) {
+
+  var joinChannels = '';
+
+  bot.api.channels.list({}, function(err, res){
+    async.each(res.channels, function(channel, callback){
+      if(!channel.is_archived){
+        var members = channel.members;
+        for ( var i = 0; i < members.length; i++ ) {
+          if ( members[i].match('^'+uid+'$')) {
+            joinChannels = joinChannels + '\r\n' + channel.name;
+          }
+        }
+      }
+    });
+
+    if(joinChannels === '' ){
+      bot.reply(message, 'チャンネル検索にヒットしませんでした。');
+    } else {
+      msg='〜検索結果ここから〜' + joinChannels + '\r\n〜検索結果ここまで〜';
+      bot.reply(message, msg);
+    }
+  });
+}
+
 
 //=========================================================
 // 名前を覚える(データを保存する)
