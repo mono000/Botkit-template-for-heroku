@@ -38,26 +38,13 @@ var bot = controller.spawn({
 // 第一引数 ['ほげ','ふが'] の部分には、マッチさせたい単語を入れます。正規表現も使えます。
 // 第二引数 'direct_message,direct_mention' の部分には、反応するパターンを入れます。
 
-//  [反応パターン一覧]
-//    direct_message: ダイレクトメッセージに反応します
-//    direct_mention: 先頭に@付きで発言されたメッセージに反応します
-//    mention: @付きで言及されたメッセージに反応します
-//    ambient: どんなメッセージタイプにも反応します
-
-controller.hears(['挨拶', 'こんにちは', 'Bot', 'あなた', '誰', 'だれ', '自己紹介'], 'direct_message,direct_mention,mention', function (bot, message) {
+controller.hears(['挨拶', 'テスト', 'Bot', 'あなた', '誰', 'だれ', '自己紹介'], 'direct_message,direct_mention,mention', function (bot, message) {
 
     // bot.reply()で、botに発言をさせます。
     bot.reply(message, 'こんにちは！私は *Botkit製のBot* です！ \n _いろんな事ができますよ！_ :smiley:');
 
-})
-
-
-controller.hears(['テストです'], 'direct_message,direct_mention,mention', function (bot, message) {
-
-    // bot.reply()で、botに発言をさせます。
-    bot.reply(message, ' `受注案件` 私は *①クライアント名_yyyy_mm_案件名* \n _いろんな事ができますよ！_ :smiley:');
-
 });
+z
 
  
  
